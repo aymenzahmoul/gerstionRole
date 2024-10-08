@@ -1,0 +1,154 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product Index{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5; /* Light background for contrast */
+            margin: 0; /* Remove default margin */
+            padding: 20px; /* Add padding around the content */
+        }
+
+        h1 {
+            text-align: center; /* Center the heading */
+            color: #007bff; /* Primary color for the title */
+            margin-bottom: 30px; /* Spacing below the heading */
+        }
+
+        .table {
+            width: 100%; /* Full width */
+            border-collapse: collapse; /* Merge borders */
+            margin: 0 auto; /* Center the table */
+            background-color: #ffffff; /* White background for the table */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+        }
+
+        th, td {
+            padding: 12px; /* Inner spacing */
+            text-align: left; /* Left align text */
+            border-bottom: 1px solid #dee2e6; /* Bottom border */
+        }
+
+        th {
+            background-color: #007bff; /* Header background color */
+            color: white; /* White text for headers */
+        }
+
+        tr:hover {
+            background-color: #f1f1f1; /* Light gray background on hover */
+        }
+
+        .actions a {
+            margin-right: 10px; /* Spacing between action links */
+            text-decoration: none; /* Remove underline */
+            color: #007bff; /* Primary link color */
+        }
+
+        .actions a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+
+        .no-records {
+            text-align: center; /* Center text for no records found */
+            color: #6c757d; /* Gray color for no records */
+        }
+
+        .create-new {
+            display: block; /* Make the link a block element */
+            text-align: center; /* Center the link */
+            margin-top: 30px; /* Spacing above the link */
+            padding: 10px; /* Inner spacing */
+            background-color: #007bff; /* Primary button color */
+            color: #ffffff; /* White text */
+            border-radius: 5px; /* Rounded corners */
+            text-decoration: none; /* Remove underline */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+
+        .create-new:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+
+        /* Logout button styling */
+        .logout-button {
+            display: inline-block; /* Inline block to wrap text */
+            padding: 8px 15px; /* Padding for size */
+            margin-top: 10px; /* Spacing above the button */
+            background-color: #dc3545; /* Red color for danger */
+            color: white; /* White text */
+            border-radius: 5px; /* Rounded corners */
+            text-decoration: none; /* Remove underline */
+            transition: background-color 0.3s; /* Smooth transition */
+            border: none; /* No border */
+        }
+
+        .logout-button:hover {
+            background-color: #c82333; /* Darker red on hover */
+        }
+
+        /* Media query for responsiveness */
+        @media (max-width: 600px) {
+            th, td {
+                padding: 8px; /* Adjust padding for smaller screens */
+            }
+
+            .create-new {
+                font-size: 14px; /* Adjust font size */
+            }
+
+            .logout-button {
+                font-size: 14px; /* Adjust font size */
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+{% if app.user %}
+    <div class="mb-5" style="margin-left: 1200px;"> <!-- Ajustez la valeur selon vos besoins -->
+        <a href="{{ path('app_logout') }}" class="logout-button">Logout</a>
+    </div>
+{% endif %}
+
+
+
+
+    <h1>Product Index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.price | number_format(2, '.', ',') }} $</td>  {# Format price if needed #}
+                    <td>{{ product.stock }}</td>
+                    <td class="actions">
+                        <a href="{{ path('app_product_show', {'id': product.id}) }}">Show</a>
+                        <a href="{{ path('app_product_edit', {'id': product.id}) }}">Edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6" class="no-records">No records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_product_new') }}" class="create-new">Create New</a>
+{% endblock %}

@@ -1,0 +1,103 @@
+{# product/show.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Product{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5; /* Light background for contrast */
+            margin: 0; /* Remove default margin */
+            padding: 20px; /* Add padding around the content */
+        }
+
+        h1 {
+            text-align: center; /* Center the heading */
+            color: #007bff; /* Primary color for the title */
+            margin-bottom: 30px; /* Spacing below the heading */
+        }
+
+        .container {
+            max-width: 600px; /* Center the product detail */
+            padding: 30px;
+            background-color: #ffffff; /* White background for the content */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+            margin: 0 auto; /* Center the container */
+        }
+
+        table {
+            width: 100%; /* Full width for the table */
+            border-collapse: collapse; /* Collapse borders */
+        }
+
+        th {
+            text-align: left; /* Align header text to the left */
+            padding: 12px; /* Inner spacing for header cells */
+            color: #333; /* Darker color for better readability */
+            background-color: #f8f9fa; /* Light background for headers */
+        }
+
+        td {
+            padding: 12px; /* Inner spacing for data cells */
+            border-bottom: 1px solid #dee2e6; /* Bottom border for separation */
+            color: #495057; /* Text color for data cells */
+        }
+
+        .btn {
+            display: inline-block; /* Make the button a block element */
+            margin-top: 20px; /* Spacing above buttons */
+            padding: 12px 20px; /* Inner spacing for buttons */
+            font-size: 16px; /* Font size for buttons */
+            color: #ffffff; /* White text */
+            background-color: #007bff; /* Primary button color */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            text-decoration: none; /* Remove underline */
+            text-align: center; /* Center the text */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+
+        .btn:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Product Details</h1>
+
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ product.id }}</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ product.name }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ product.description }}</td>
+                </tr>
+                <tr>
+                    <th>Price</th>
+                    <td>{{ product.price }}</td>
+                </tr>
+                <tr>
+                    <th>Stock</th>
+                    <td>{{ product.stock }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a href="{{ path('app_product_index') }}" class="btn">Back to list</a>
+        <a href="{{ path('app_product_edit', {'id': product.id}) }}" class="btn">Edit</a>
+
+        {{ include('product/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

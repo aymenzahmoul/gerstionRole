@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Product{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5; /* Light background for contrast */
+            margin: 0; /* Remove default margin */
+            padding: 20px; /* Add padding around the content */
+        }
+
+        h1 {
+            text-align: center; /* Center the heading */
+            color: #007bff; /* Primary color for the title */
+            margin-bottom: 30px; /* Spacing below the heading */
+        }
+
+        .container {
+            max-width: 600px; /* Center the form */
+            padding: 30px;
+            background-color: #ffffff; /* White background for the form */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+            margin: 0 auto; /* Center the container */
+        }
+
+        .back-link {
+            display: block; /* Make the link a block element */
+            text-align: center; /* Center the link */
+            margin-top: 20px; /* Spacing above the link */
+            text-decoration: none; /* Remove underline */
+            color: #007bff; /* Primary link color */
+        }
+
+        .back-link:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="h3 mb-3 font-weight-normal">Edit Product</h1>
+
+        {{ include('product/_form.html.twig', {'button_label': 'Update'}) }}
+
+        <a href="{{ path('app_product_index') }}" class="back-link">Back to list</a>
+
+        
+    </div>
+{% endblock %}

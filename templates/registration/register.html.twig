@@ -1,0 +1,134 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5; /* Light background for contrast */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            margin: 0;
+        }
+
+        .container {
+            max-width: 400px; /* Center the form */
+            padding: 30px;
+            background-color: #ffffff; /* White background for the form */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Enhanced shadow for depth */
+        }
+
+        h1 {
+            margin-bottom: 20px; /* Spacing below the heading */
+            color: #007bff; /* Primary color for the title */
+            text-align: center; /* Center the title */
+        }
+
+        .form-group {
+            margin-bottom: 15px; /* Spacing between form groups */
+        }
+
+        label {
+            font-weight: bold; /* Make labels bold */
+            margin-bottom: 5px; /* Spacing below labels */
+            display: block; /* Ensure labels take full width */
+        }
+
+        .form-control {
+            border: 1px solid #ced4da; /* Light border color */
+            border-radius: 5px; /* Rounded borders */
+            padding: 12px; /* Inner spacing */
+            width: 100%; /* Full width */
+            box-sizing: border-box; /* Include padding and border in element's total width */
+            transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+        }
+
+        .form-control:focus {
+            border-color: #007bff; /* Primary border color on focus */
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.25); /* Shadow on focus */
+            outline: none; /* Remove default outline */
+        }
+
+        .btn {
+            background-color: #007bff; /* Primary button color */
+            color: #ffffff; /* White text */
+            border: none; /* No border */
+            padding: 12px; /* Inner spacing */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            width: 100%; /* Full width */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+
+        .btn:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+
+        .alert {
+            margin-bottom: 20px; /* Spacing below alerts */
+        }
+
+        .form-check {
+            display: flex; /* Align checkboxes properly */
+            align-items: center; /* Center vertically */
+        }
+
+        .form-check-label {
+            margin-left: 10px; /* Space between checkbox and label */
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <div class="container">
+        <h1>Register</h1>
+
+        {{ form_errors(registrationForm) }}
+
+        {{ form_start(registrationForm, { 'attr': {'class': 'form-register'} }) }}
+            <div class="form-group">
+                {{ form_row(registrationForm.email, {
+                    'label': 'Email',
+                    'attr': {'class': 'form-control', 'placeholder': 'Enter your email'}
+                }) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_row(registrationForm.plainPassword, {
+                    'label': 'Password',
+                    'attr': {'class': 'form-control', 'placeholder': 'Enter your password'}
+                }) }}
+            </div>
+
+            <div class="form-check">
+              
+                <div class="form-check">
+                    {{ form_row(registrationForm.role, {
+                        'attr': {'class': 'form-check-input'},
+                        'label_attr': {'class': 'form-check-label'}
+                    }) }}
+                </div>
+            </div>
+
+            <div class="form-check">
+                {{ form_row(registrationForm.agreeTerms, {
+                    'attr': {'class': 'form-check-input'},
+                    'label_attr': {'class': 'form-check-label'}
+                }) }}
+                <label class="form-check-label" for="{{ registrationForm.agreeTerms.vars.id }}">
+                    I agree to the terms and conditions
+                </label>
+            </div>
+
+            <button type="submit" class="btn">Register</button>
+        {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,120 @@
+{# product/_form.html.twig #}
+
+   
+
+    {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.name) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.description) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.price) }}
+            {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.price) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.stock) }}
+            {{ form_widget(form.stock, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.stock) }}
+        </div>
+
+        <button class="btn btn-lg btn-primary" type="submit">
+            {{ button_label|default('Save') }}
+        </button>
+    {{ form_end(form) }}
+
+
+{% block stylesheets %}
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5; /* Light background for contrast */
+            margin: 0; /* Remove default margin */
+            padding: 20px; /* Add padding around the content */
+        }
+
+        h1 {
+            text-align: center; /* Center the heading */
+            color: #007bff; /* Primary color for the title */
+            margin-bottom: 30px; /* Spacing below the heading */
+        }
+
+        .container {
+            max-width: 600px; /* Center the form */
+            padding: 30px;
+            background-color: #ffffff; /* White background for the form */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+            margin: 0 auto; /* Center the container */
+        }
+
+        .form-group {
+            margin-bottom: 20px; /* More spacing between form groups */
+        }
+
+        label {
+            font-weight: bold; /* Make labels bold */
+            margin-bottom: 5px; /* Spacing below labels */
+            display: block; /* Ensure labels take full width */
+            color: #333; /* Darker color for better readability */
+        }
+
+        .form-control {
+            border: 1px solid #ced4da; /* Light border color */
+            border-radius: 5px; /* Rounded borders */
+            padding: 12px; /* Inner spacing */
+            width: 100%; /* Full width */
+            box-sizing: border-box; /* Include padding and border in element's total width */
+            transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+            font-size: 16px; /* Larger font size for better readability */
+            color: #495057; /* Text color for input fields */
+        }
+
+        .form-control:focus {
+            border-color: #007bff; /* Primary border color on focus */
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.25); /* Shadow on focus */
+            outline: none; /* Remove default outline */
+        }
+
+        .btn {
+            background-color: #007bff; /* Primary button color */
+            color: #ffffff; /* White text */
+            border: none; /* No border */
+            padding: 12px; /* Inner spacing */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            width: 100%; /* Full width */
+            font-size: 16px; /* Larger font size for better readability */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+
+        .btn:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+
+        .alert {
+            margin-bottom: 20px; /* Spacing below alerts */
+        }
+
+        .back-link {
+            display: block; /* Make the link a block element */
+            text-align: center; /* Center the link */
+            margin-top: 20px; /* Spacing above the link */
+            text-decoration: none; /* Remove underline */
+            color: #007bff; /* Primary link color */
+        }
+
+        .back-link:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+    </style>
+{% endblock %}
